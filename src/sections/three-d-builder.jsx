@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Edges } from '@react-three/drei';
 import Ground from '../components/builder/ground';
 import LayerMeshGuide from '../components/builder/layer-mesh-guide';
+import Sky from '../components/builder/enviroment/sky';
 
 export default function ThreeDBuilder({ size, blockColor, blocksArray, onBlocksArrayChange }) {
   const [selectedLayer, setSelectedLayer] = useState(0);
@@ -59,6 +60,7 @@ export default function ThreeDBuilder({ size, blockColor, blocksArray, onBlocksA
       }}
     >
       <Canvas camera={{ position: [9.5, 9.5, 9.5], fov: 50 }}>
+        <Sky />
         <Ground />
         <LayerMeshGuide
           selectedLayer={selectedLayer}
@@ -67,7 +69,13 @@ export default function ThreeDBuilder({ size, blockColor, blocksArray, onBlocksA
         />
 
         <OrbitControls enableDamping dampingFactor={0.1} />
-        <ambientLight intensity={3} />
+        <directionalLight
+          position={[10, 20, 5]}
+          intensity={1.4}
+          castShadow={false}
+          color="#ffd9a0"
+        />
+        <ambientLight intensity={1.2} />
       </Canvas>
     </Box>
   );

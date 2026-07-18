@@ -1,10 +1,15 @@
 import { Canvas } from '@react-three/fiber';
-import { Box, OrbitControls } from '@react-three/drei';
+import { Plane, OrbitControls } from '@react-three/drei';
+import { FrontSide } from 'three';
 
 export default function Ground() {
   return (
-    <Box args={[12, 1, 12]} position={[4.5, -0.5, 4.5]}>
-      <meshPhongMaterial color="green" />
-    </Box>
+    <Plane
+      args={[12, 12]}
+      position={[4.5, 0, 4.5]}
+      rotation={[-Math.PI / 2, 0, 0]}
+    >
+      <meshPhongMaterial color="green" side={FrontSide} />
+    </Plane>
   );
 }
